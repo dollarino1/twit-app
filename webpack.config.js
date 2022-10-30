@@ -18,11 +18,20 @@ const config = {
     filename: isProduction ? '[name].[contenthash].js' : '[name].js'
   },
   devServer: {
+    historyApiFallback: true,
+    compress: true,
+    hot: true,
+    port: 4500,
+    static: {
+      directory: path.join(__dirname, 'dist'),
+    },
     open: true,
     host: "localhost",
   },
   plugins: [
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: './public/index.html'
+    }),
     new CleanWebpackPlugin(),
     // Add your plugins here
     // Learn more about plugins from https://webpack.js.org/configuration/plugins/
