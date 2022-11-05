@@ -1,19 +1,41 @@
 import React from 'react';
-import {ThemeProvider} from "@mui/material";
-import mainTheme from './styles/main';
-import {mainAPI} from "./services/MainService";
+import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
+import { Home } from "./pages/Public/Home";
+import Registration from "./pages/Public/registration/Registration";
+import Login from "./pages/Public/login/Login";
+import PublicLayout from "./components/Layouts/PublicLayout";
+import PrivateLayout from "./components/Layouts/PrivateLayout";
+import Feed from "./pages/Private/feed/Feed";
 
 function App() {
-    const {data: posts, isLoading} = mainAPI.useFetchAllQuery(5)
   return (
-      <ThemeProvider theme={mainTheme}>
-          <div className="App">
-              {posts ? posts.map(post => {
-                  return <h4 key={post.id}>{post.title}</h4>
-              }) : 'Loading'}
-          </div>
-      </ThemeProvider>
+        <div className="App">
+          <BrowserRouter>
+            <Routes>
+              <Route
+                element={
+                  <PrivateLayout>
+                    <Outlet />
+                  </PrivateLayout>
+                }
+              >
+                <Route path="/feed" element={<Feed />} />
+              </Route>
 
+              <Route
+                element={
+                  <PublicLayout>
+                    <Outlet />
+                  </PublicLayout>
+                }
+              >
+                <Route path={'/'} element={<Home />}/>
+                <Route path={'/registration'} element={<Registration />}/>
+                <Route path={'/login'} element={<Login />}/>
+              </Route>
+            </Routes>
+          </BrowserRouter>
+        </div>
   );
 }
 
