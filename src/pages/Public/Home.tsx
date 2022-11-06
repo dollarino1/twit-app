@@ -6,10 +6,10 @@ export const Home: FC = () => {
   return <Box>
     Home PAGE
     <Button variant={'outlined'}>
-      <Link to={'/registration'}>GO TO REG PAGE</Link>
+      <Link to={'/auth/signup'}>GO TO REG PAGE</Link>
     </Button>
     <Button variant={'outlined'}>
-      <Link to={'/login'}>GO TO LOGIN PAGE</Link>
+      <Link to={'/auth/login'}>GO TO LOGIN PAGE</Link>
     </Button>
   </Box>
 }

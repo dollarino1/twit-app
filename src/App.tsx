@@ -1,11 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
 import { Home } from "./pages/Public/Home";
-import Registration from "./pages/Public/registration/Registration";
-import Login from "./pages/Public/login/Login";
 import PublicLayout from "./components/Layouts/PublicLayout";
 import PrivateLayout from "./components/Layouts/PrivateLayout";
 import Feed from "./pages/Private/feed/Feed";
+import Auth from "./pages/Public/Auth/Auth";
 
 function App() {
   return (
@@ -30,8 +29,7 @@ function App() {
                 }
               >
                 <Route path={'/'} element={<Home />}/>
-                <Route path={'/registration'} element={<Registration />}/>
-                <Route path={'/login'} element={<Login />}/>
+                <Route path={'/auth/:type'} element={<Auth />}/>
               </Route>
             </Routes>
           </BrowserRouter>
